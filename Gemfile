@@ -59,3 +59,8 @@ gem 'figaro'
 # Admin -> Testle.io
 gem 'trestle'
 gem 'trestle-auth'
+
+# user authentification
+gem 'devise'
+# API
+gem 'rack-cors'
