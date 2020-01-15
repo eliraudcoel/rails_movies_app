@@ -62,5 +62,7 @@ gem 'trestle-auth'
 
 # user authentification
 gem 'devise'
+gem 'devise-jwt'
+
 # API
 gem 'rack-cors'
