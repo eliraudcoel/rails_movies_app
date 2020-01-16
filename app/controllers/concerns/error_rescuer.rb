@@ -12,6 +12,8 @@ module ErrorRescuer
     rescue_from ActiveRecord::RecordInvalid,            with: :invalid_record
     rescue_from ActiveRecord::RecordNotFound,           with: :record_not_found
     rescue_from Exceptions::InvalidToken,               with: :invalid_token
+    rescue_from Exceptions::EmailNotFound,              with: :email_not_found
+    rescue_from Exceptions::InvalidPassword,            with: :invalid_password
     rescue_from Exceptions::InvalidUser,                with: :invalid_user
     rescue_from Exceptions::AuthenticationRequired,     with: :authentication_required
     rescue_from Exceptions::MissingParameter,           with: :missing_parameter
@@ -41,8 +43,16 @@ module ErrorRescuer
     error!(message, error.class.name, 404)
   end
 
+  def email_not_found(e)
+    error!("Email not found", e.class.name, 404)
+  end
+
   def invalid_token(e)
     error!("Authentification incorrecte", e.class.name, 401)
+  end
+
+  def invalid_password(e)
+    error!("Password invalid", e.class.name, 404)
   end
 
   def invalid_user(e)
