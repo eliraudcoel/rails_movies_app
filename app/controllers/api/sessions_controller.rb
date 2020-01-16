@@ -4,10 +4,10 @@ module Api
 
       def create
         @user = User.find_by(email: user_params[:email])
-        raise ErrorRescuer::EmailNotFound unless @user
+        raise Exceptions::EmailNotFound unless @user
 
         # and check for the password validity
-        raise ErrorRescuer::InvalidPassword unless @user.valid_password?(user_params[:password])
+        raise Exceptions::InvalidPassword unless @user.valid_password?(user_params[:password])
 
         # We are now *sure* of the user's identify: we can grant him a new access token
         @access_token = JsonWebToken.encode({user_id: @user.id, user_email: @user.email})
