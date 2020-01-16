@@ -16,7 +16,7 @@ module Api
       end
 
       def destroy
-        cancel_user_tokens
+        # TODO
         head 204
       end
 
