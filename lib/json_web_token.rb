@@ -1,15 +1,19 @@
 class JsonWebToken
   class << self
-    def encode(payload, exp = 24.hours.from_now)
+    ALGORITHM = "HS256"
+    SECRET_KEY = ENV["DEVISE_JWT_SECRET_KEY"]
+    EXPIRED_TIME = 24.hours.from_now
+
+    def encode(payload, exp = EXPIRED_TIME)
       payload[:exp] = exp.to_i
-      JWT.encode(payload, Rails.application.secrets.secret_key_base)
+      JWT.encode(payload, SECRET_KEY, ALGORITHM)
     end
-    
+
     def decode(token)
-      body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
-      HashWithIndifferentAccess.new body
-    rescue
-      nil
+      body = JWT.decode(token, SECRET_KEY, true, { algorithm: ALGORITHM })
+      HashWithIndifferentAccess.new body[0]
+    rescue JWT::ExpiredSignature
+      # TODO -> Token expired error
     end
   end
 end
