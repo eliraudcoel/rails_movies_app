@@ -6,6 +6,9 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password_digest, presence: true
 
+  has_many :user_movies
+  has_many :movies, through: :user_movies
+
   # Generates & store in`password_digest` to store the hashed password.
   def password=(new_password)
     @password = new_password
