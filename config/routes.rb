@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: %i(show)
+    resources :user_movies, only: %i(show)
   end
 end

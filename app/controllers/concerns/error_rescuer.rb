@@ -9,9 +9,14 @@ module ErrorRescuer
   end
 
   included do
-    rescue_from StandardError,                          with: :unmatched_error
-    rescue_from Exceptions::EmailNotFound,              with: :email_not_found
-    rescue_from Exceptions::InvalidPassword,            with: :invalid_password
+    rescue_from StandardError,                  with: :unmatched_error
+
+    rescue_from Exceptions::EmailNotFound,      with: :email_not_found
+    rescue_from Exceptions::InvalidPassword,    with: :invalid_password
+    rescue_from Exceptions::InvalidToken        with: :invalid_token
+
+    rescue_from Exceptions::UserNotFound,       with: :user_not_found
+    rescue_from Exceptions::UserMovieNotFound,  with: :user_movie_not_found
   end
 
   # Unmatch cas of error raised
@@ -31,4 +36,20 @@ module ErrorRescuer
   def invalid_password(e)
     error!("Password invalid", e.class.name, 404)
   end
+    
+  # error when user's movie is not found
+  def invalid_token(e)
+    error!("Token is invalid", e.class.name, 404)
+  end
+
+  # error when user is not found
+  def user_not_found(e)
+    error!("User not found", e.class.name, 404)
+  end
+
+  # error when user's movie is not found
+  def user_movie_not_found(e)
+    error!("User movie not found", e.class.name, 404)
+  end
+
 end

@@ -20,6 +20,16 @@ class User < ApplicationRecord
     compare(password)
   end
 
+  def self.find_by_access_token(token)
+    user = nil
+    user_id = JsonWebToken.decode(token)
+    byebug
+
+    if user_id
+      user = User.find(user_id)
+    end
+  end
+
   private
 
   # Method for generate a password hash
