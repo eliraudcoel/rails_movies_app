@@ -22,9 +22,9 @@ class User < ApplicationRecord
 
   def self.find_by_access_token(token)
     user = nil
-    user_id = JsonWebToken.decode(token)
-    byebug
-
+    user_informations = JsonWebToken.decode(token)
+    user_id = user_informations[:user_id]
+    
     if user_id
       user = User.find(user_id)
     end

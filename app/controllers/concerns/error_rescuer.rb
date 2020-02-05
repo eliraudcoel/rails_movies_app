@@ -11,6 +11,8 @@ module ErrorRescuer
   included do
     rescue_from StandardError,                  with: :unmatched_error
 
+    rescue_from Exceptions::AccessRestricted,   with: :access_restricted
+
     rescue_from Exceptions::EmailNotFound,      with: :email_not_found
     rescue_from Exceptions::InvalidPassword,    with: :invalid_password
     rescue_from Exceptions::InvalidToken        with: :invalid_token
@@ -25,6 +27,11 @@ module ErrorRescuer
     logger.error(e)
     logger.error(e.backtrace.join("\n"))
     error!("Une erreur a été trouvée", e.class.name, 500, message: e.message)
+  end
+
+  # Error when user cannot have access to a ressource
+  def access_restricted(e)
+    error!("Access restricted you cannot have access to this resource", e.class.name, 404)
   end
 
   # error when email is not found

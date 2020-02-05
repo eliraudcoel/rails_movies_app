@@ -10,9 +10,8 @@ class JsonWebToken
 
   def self.decode(token)
     body = JWT.decode(token, SECRET_KEY, true, { algorithm: ALGORITHM })
-    byebug
     HashWithIndifferentAccess.new body[0]
     
-    # rescue JWT::ExpiredSignature => error with invalid token
+    # JWT::ExpiredSignature can be recued if token has expired or invalid
   end
 end

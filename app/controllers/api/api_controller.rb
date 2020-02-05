@@ -6,7 +6,6 @@ module Api
 
       include TokenAuthentication
       include ErrorRescuer
-    
     end
   end
 end

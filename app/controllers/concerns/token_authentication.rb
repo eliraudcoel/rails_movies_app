@@ -1,6 +1,6 @@
 module TokenAuthentication
   # Allow use to user authenticate_with_http_token
-  include ActionController::HttpAuthentication::Token::ControllerMethods
+  # include ActionController::HttpAuthentication::Token::ControllerMethods
 
   extend ActiveSupport::Concern
 
@@ -31,20 +31,7 @@ module TokenAuthentication
 
   def authenticate_with_token!
     raise Exceptions::InvalidToken.new unless user_signed_in?
+  rescue
+    raise Exceptions::InvalidToken.new
   end
-
-  # def authorization_header
-  #   @http_authorization = request.env["HTTP_AUTHORIZATION"]
-  #   @http_authorization = @http_authorization.split("Bearer ")[1]
-  # end
-
-  # def sign_user_in(user, access_token: nil)
-  #   @current_user = user
-  #   @access_token = access_token if access_token
-  # end
-
-  # def cancel_user_tokens
-  #   token_objs = AccessToken.for_access_token(@access_token)
-  #   token_objs.each(&:cancel!)
-  # end
 end

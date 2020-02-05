@@ -5,11 +5,12 @@ module Api
       include ActionController::HttpAuthentication::Token
 
       def show
-        # user = self.lookup_user_from_token
-        byebug
-        
-        #TODO : make it retrieve from header token
+        # Get current user informations
         @user = User.find(params[:id])
+
+        if @user && @current_user && @current_user != @user
+          raise Exceptions::AccessRestricted.new
+        end
 
         # and check if user exist
         raise Exceptions::UserNotFound unless @user

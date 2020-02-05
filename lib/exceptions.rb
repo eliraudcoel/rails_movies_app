@@ -1,6 +1,14 @@
 module Exceptions
   # Parent of all API errors
   class ApiError < StandardError; end
+
+  #
+  # GLOBAL
+  #
+
+  # Error when user cannot have access to a ressource
+  class AccessRestricted < ApiError; end
+
   #
   # SESSIONS
   #
