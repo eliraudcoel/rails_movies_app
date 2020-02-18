@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   PASSWORD_COST = 10
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
 
   has_many :user_movies

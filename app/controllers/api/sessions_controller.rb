@@ -5,7 +5,7 @@ module Api
       # Skip verify_authenticity_token
       # Error display : Can't verify CSRF token authenticity
       # Fix Reference : https://stackoverflow.com/a/43122403
-      skip_before_action :verify_authenticity_token
+      skip_before_action :verify_authenticity_token, only: [:create]
 
       # Skip authenticate_with_token! from TokenAuthentication concern
       # In this cas we don't care about token in HTTP request header
