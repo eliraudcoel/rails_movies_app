@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       delete :destroy, on: :collection
     end
 
-    resources :users, only: %i(show)
-    resources :user_movies, only: %i(show)
+    resources :users, only: %i(show create)
+    resources :user_movies, only: %i(show update create)
   end
 end
