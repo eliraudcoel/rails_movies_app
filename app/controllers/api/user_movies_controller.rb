@@ -23,7 +23,7 @@ module Api
           @movie = Movie.create(user_movie_params)
         end
 
-        @current_user.user_movies.create(movie: @movie)
+        @user_movie = @current_user.user_movies.create(update_params.merge({movie: @movie}))
 
         # and check if user_movie exist
         # raise Exceptions::UserMovieNotFound unless @user_movie
