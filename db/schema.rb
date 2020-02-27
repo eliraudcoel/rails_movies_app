@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_120920) do
     t.integer "imdbID"
     t.string "title"
     t.string "overview"
+    t.string "tagline"
     t.string "poster_path"
     t.string "backdrop_path"
     t.float "vote_average"

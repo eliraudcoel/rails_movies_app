@@ -20,13 +20,13 @@ module Api
         @movie = user_movies.find_by(imdbID: user_movie_params[:imdbID])
 
         unless @movie
-          @movie = Movie.create(user_movie_params)
+          movie_params = user_movie_params.except(:imdbID).transform_keys { |d| d.underscore }
+          movie_params = movie_params.merge({ imdbID: user_movie_params[:imdbID] })
+          puts movie_params
+          @movie = Movie.create(movie_params)
         end
 
-        @user_movie = @current_user.user_movies.create(update_params.merge({movie: @movie}))
-
-        # and check if user_movie exist
-        # raise Exceptions::UserMovieNotFound unless @user_movie
+        @user_movie = @current_user.user_movies.create(update_params.merge({ movie: @movie }))
       end
 
       def update
@@ -41,7 +41,7 @@ module Api
       private
 
       def user_movie_params
-        params.permit(:id, :imdbID, :title, :overview, :poster_path, :backdrop_path, :vote_average, :release_date)
+        params.permit(:id, :imdbID, :title, :tagline, :overview, :posterPath, :backdropPath, :voteAverage, :releaseDate)
       end
 
       def update_params

@@ -4,6 +4,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.integer :imdbID
       t.string :title
       t.string :overview
+      t.string :tagline
       t.string :poster_path
       t.string :backdrop_path
       t.float :vote_average
