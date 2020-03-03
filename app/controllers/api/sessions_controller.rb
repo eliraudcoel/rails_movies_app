@@ -25,11 +25,6 @@ module Api
         # render template: "api/v1/sessions/create.json.jbuilder"
       end
 
-      def destroy
-        # TODO - only useful in application. Token aren't save in application
-        head 204
-      end
-
       private
 
       def user_params
