@@ -118,6 +118,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    pg (1.2.2)
     public_suffix (4.0.3)
     puma (4.3.3)
       nio4r (~> 2.0)
@@ -183,7 +184,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -232,14 +232,14 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jwt
   listen (>= 3.0.5, < 3.2)
-  nokogiri (~> 1.10)
-  puma (~> 4.3)
+  nokogiri (>= 1.10.9)
+  pg
+  puma (>= 4.3.3)
   rails (~> 6.0.2, >= 6.0.2.1)
   sass-rails (>= 6)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   trestle
   trestle-auth
   turbolinks (~> 5)

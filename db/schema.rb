@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_01_27_120920) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "administrators", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_120920) do
   end
 
   create_table "user_movies", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "movie_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
     t.boolean "favorite"
     t.float "rate"
     t.datetime "created_at", precision: 6, null: false
