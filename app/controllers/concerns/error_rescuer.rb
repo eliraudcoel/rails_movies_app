@@ -15,7 +15,7 @@ module ErrorRescuer
 
     rescue_from Exceptions::EmailNotFound,      with: :email_not_found
     rescue_from Exceptions::InvalidPassword,    with: :invalid_password
-    rescue_from Exceptions::InvalidToken        with: :invalid_token
+    rescue_from Exceptions::InvalidToken,       with: :invalid_token
 
     rescue_from Exceptions::UserNotFound,       with: :user_not_found
     rescue_from Exceptions::UserMovieNotFound,  with: :user_movie_not_found

@@ -27,4 +27,11 @@ module Exceptions
 
   # Error raised when user is not found
   class UserNotFound < ApiError; end
+
+  #
+  # USER MOVIES
+  #
+
+  # Error raised when user's movie is not found
+  class UserMovieNotFound < ApiError; end
 end
