@@ -1,6 +1,6 @@
-Trestle.resource(:users) do
+Trestle.resource(:user_movies) do
   menu do
-    item :users, icon: "fa fa-user"
+    item :user_movies, icon: "fa fa-star"
   end
 
   # Customize the table columns shown on the index view.
@@ -13,7 +13,7 @@ Trestle.resource(:users) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |user|
+  # form do |user_movie|
   #   text_field :name
   #
   #   row do
@@ -30,6 +30,6 @@ Trestle.resource(:users) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:user).permit(:name, ...)
+  #   params.require(:user_movie).permit(:name, ...)
   # end
 end
